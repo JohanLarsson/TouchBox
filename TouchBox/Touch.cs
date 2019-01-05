@@ -21,14 +21,24 @@
                 {
                     pointerType = POINTER_INPUT_TYPE.PT_TOUCH,
                     pointerFlags = POINTER_FLAGS.POINTER_FLAG_DOWN | POINTER_FLAGS.POINTER_FLAG_INRANGE | POINTER_FLAGS.POINTER_FLAG_INCONTACT,
-                    ptPixelLocation = new POINT{x =x, y=y},
+                    ptPixelLocation = new POINT
+                    {
+                        x = x,
+                        y = y,
+                    },
                     pointerId = 1,
                 },
                 touchFlags = TOUCH_FLAGS.TOUCH_FLAGS_NONE,
                 touchMasks = TOUCH_MASK.TOUCH_MASK_CONTACTAREA | TOUCH_MASK.TOUCH_MASK_ORIENTATION | TOUCH_MASK.TOUCH_MASK_PRESSURE,
                 orientation = 90,
                 pressure = 32000,
-                rcContact = new Rect { left = x - 2, right = x + 2, top = y - 2, bottom = y + 2 },
+                rcContact = new Rect
+                {
+                    left = x - 2,
+                    right = x + 2,
+                    top = y - 2,
+                    bottom = y + 2
+                },
             };
 
             if (!InjectTouchInput(1, ref contacts))
