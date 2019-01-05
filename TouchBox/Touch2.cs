@@ -36,10 +36,10 @@
                         ptPixelLocation = new TouchPoint(x, y),
                         pointerId = 0,
                     },
-                    //TouchFlags = TouchFlags.NONE,
-                    //Orientation = 90,
-                    //Pressure = 32000,
-                    //TouchMasks = TouchMask.CONTACTAREA | TouchMask.ORIENTATION | TouchMask.PRESSURE,
+                    TouchFlags = TouchFlags.NONE,
+                    Orientation = 90,
+                    Pressure = 32000,
+                    TouchMasks = TouchMask.CONTACTAREA | TouchMask.ORIENTATION | TouchMask.PRESSURE,
                     ContactArea = ContactArea.Create(new TouchPoint(x, y), 2),
                 }
             };
