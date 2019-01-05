@@ -43,7 +43,7 @@
 
             <ListBox x:Name="Events" />
             <StackPanel Grid.Row="1">
-                <Button Click="OnTouchClick" Content="Touch" />
+                <Button Click="OnTapClick" Content="Tap" />
                 <Button Click="OnClearClick" Content="Clear" />
             </StackPanel>
         </Grid>

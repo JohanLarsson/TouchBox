@@ -31,7 +31,7 @@
             this.Events.Items.Add($"{e.RoutedEvent.Name}");
         }
 
-        private async void OnTouchClick(object sender, RoutedEventArgs e)
+        private async void OnTapClick(object sender, RoutedEventArgs e)
         {
             // delay so we don't mix with the mouse click that got us here.
             await Task.Delay(TimeSpan.FromMilliseconds(200));
