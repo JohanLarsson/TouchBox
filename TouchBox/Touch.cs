@@ -1,6 +1,7 @@
 ﻿namespace TouchBox
 {
     using System;
+    using System.ComponentModel;
     using System.Runtime.InteropServices;
 
     /// <summary>
@@ -12,7 +13,7 @@
         {
             if (!InitializeTouchInjection(1, TouchMode.TOUCH_FEEDBACK_DEFAULT))
             {
-                throw new InvalidOperationException($"Initialize touch failed: {Marshal.GetLastWin32Error()}");
+                throw new Win32Exception();
             }
 
             var contacts = new POINTER_TOUCH_INFO
@@ -43,18 +44,18 @@
 
             if (!InjectTouchInput(1, ref contacts))
             {
-                throw new InvalidOperationException($"Touch down failed: {Marshal.GetLastWin32Error()}");
+                throw new Win32Exception();
             }
 
             contacts.pressure = 0;
             contacts.pointerInfo.pointerFlags = POINTER_FLAGS.POINTER_FLAG_UP;
             if (!InjectTouchInput(1, ref contacts))
             {
-                throw new InvalidOperationException($"Touch up failed: {Marshal.GetLastWin32Error()}");
+                throw new Win32Exception();
             }
         }
 
-        [DllImport("User32.dll")]
+        [DllImport("User32.dll", SetLastError = true)]
         static extern bool InitializeTouchInjection(uint maxCount, TouchMode dwMode);
 
         [DllImport("User32.dll")]
