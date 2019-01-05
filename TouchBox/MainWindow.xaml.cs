@@ -26,7 +26,6 @@
             this.Events.Items.Add($"{e.RoutedEvent.Name} Position: {e.GetTouchPoint((IInputElement)e.Source).Position.ToString(CultureInfo.InvariantCulture)}");
         }
 
-
         private void OnTap(object sender, RoutedEventArgs e)
         {
             this.Events.Items.Add($"{e.RoutedEvent.Name}");

@@ -14,8 +14,9 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="400" />
         </Grid.ColumnDefinitions>
-        <Button 
+        <Button
             Background="LightGray"
+            Click="OnTap"
             IsManipulationEnabled="True"
             ManipulationBoundaryFeedback="OnManipulation"
             ManipulationCompleted="OnManipulation"
@@ -30,8 +31,7 @@
             TouchEnter="OnTouch"
             TouchLeave="OnTouch"
             TouchMove="OnTouch"
-            TouchUp="OnTouch"
-            Click="OnTap">
+            TouchUp="OnTouch">
             Listens to touch events here
         </Button>
 

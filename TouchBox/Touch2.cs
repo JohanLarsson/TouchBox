@@ -3,7 +3,6 @@
     using System;
     using System.ComponentModel;
     using System.Runtime.InteropServices;
-    using System.Windows;
 
     static class Touch2
     {
