@@ -1,6 +1,8 @@
 ﻿namespace TouchBox
 {
+    using System;
     using System.Globalization;
+    using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Input;
 
@@ -29,9 +31,18 @@
             this.Events.Items.Add($"{e.RoutedEvent.Name}");
         }
 
-        private void OnTouchClick(object sender, RoutedEventArgs e)
+        private async void OnTouchClick(object sender, RoutedEventArgs e)
         {
-            Touch.Tap(100, 120);
+            // delay so we don't mix with the mouse click that got us here.
+            await Task.Delay(TimeSpan.FromMilliseconds(200));
+            try
+            {
+                Touch.Tap(100, 120);
+            }
+            catch (Exception exception)
+            {
+                this.Events.Items.Add($"Exception: {exception.Message}");
+            }
         }
     }
 }

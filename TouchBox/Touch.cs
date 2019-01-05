@@ -3,6 +3,9 @@
     using System;
     using System.Runtime.InteropServices;
 
+    /// <summary>
+    /// Wrapper for https://docs.microsoft.com/en-us/windows/desktop/api/_input_touchinjection/
+    /// </summary>
     public static class Touch
     {
         public static void Tap(int x, int y)
