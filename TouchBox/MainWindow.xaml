@@ -1,31 +1,40 @@
-﻿<Window x:Class="TouchBox.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TouchBox"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Background="LightGray"
-          IsManipulationEnabled="True"
-          ManipulationBoundaryFeedback="OnManipulation"
-          ManipulationCompleted="OnManipulation"
-          ManipulationDelta="OnManipulation"
-          ManipulationInertiaStarting="OnManipulation"
-          ManipulationStarted="OnManipulation"
-          ManipulationStarting="OnManipulation"
-          PreviewTouchDown="OnTouch"
-          PreviewTouchMove="OnTouch"
-          PreviewTouchUp="OnTouch"
-          TouchDown="OnTouch"
-          TouchEnter="OnTouch"
-          TouchLeave="OnTouch"
-          TouchMove="OnTouch"
-          TouchUp="OnTouch">
+﻿<Window
+    x:Class="TouchBox.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TouchBox"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="800"
+    Height="450"
+    mc:Ignorable="d">
+    <Grid
+        Background="LightGray"
+        IsManipulationEnabled="True"
+        ManipulationBoundaryFeedback="OnManipulation"
+        ManipulationCompleted="OnManipulation"
+        ManipulationDelta="OnManipulation"
+        ManipulationInertiaStarting="OnManipulation"
+        ManipulationStarted="OnManipulation"
+        ManipulationStarting="OnManipulation"
+        PreviewTouchDown="OnTouch"
+        PreviewTouchMove="OnTouch"
+        PreviewTouchUp="OnTouch"
+        TouchDown="OnTouch"
+        TouchEnter="OnTouch"
+        TouchLeave="OnTouch"
+        TouchMove="OnTouch"
+        TouchUp="OnTouch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="400" />
         </Grid.ColumnDefinitions>
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="Listens to touch events here" />
+
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition />
@@ -34,10 +43,8 @@
 
             <ListBox x:Name="Events" />
             <StackPanel Grid.Row="1">
-                <Button Content="Touch" Click="OnTouchClick"></Button>
-                <Button 
-                        Click="OnClearClick"
-                        Content="Clear" />
+                <Button Click="OnTouchClick" Content="Touch" />
+                <Button Click="OnClearClick" Content="Clear" />
             </StackPanel>
         </Grid>
     </Grid>
