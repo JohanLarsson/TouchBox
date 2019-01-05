@@ -26,6 +26,12 @@
             this.Events.Items.Add($"{e.RoutedEvent.Name} Position: {e.GetTouchPoint((IInputElement)e.Source).Position.ToString(CultureInfo.InvariantCulture)}");
         }
 
+
+        private void OnTap(object sender, RoutedEventArgs e)
+        {
+            this.Events.Items.Add($"{e.RoutedEvent.Name}");
+        }
+
         private void OnManipulation(object sender, InputEventArgs e)
         {
             this.Events.Items.Add($"{e.RoutedEvent.Name}");
@@ -37,7 +43,10 @@
             await Task.Delay(TimeSpan.FromMilliseconds(200));
             try
             {
-                Touch.Tap(100, 120);
+                Touch2.Down(100,120);
+                Touch2.Drag(110,130);
+                Touch2.Up();
+                //Touch.Tap(100, 120);
             }
             catch (Exception exception)
             {

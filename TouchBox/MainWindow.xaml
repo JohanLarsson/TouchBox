@@ -9,31 +9,31 @@
     Width="800"
     Height="450"
     mc:Ignorable="d">
-    <Grid
-        Background="LightGray"
-        IsManipulationEnabled="True"
-        ManipulationBoundaryFeedback="OnManipulation"
-        ManipulationCompleted="OnManipulation"
-        ManipulationDelta="OnManipulation"
-        ManipulationInertiaStarting="OnManipulation"
-        ManipulationStarted="OnManipulation"
-        ManipulationStarting="OnManipulation"
-        PreviewTouchDown="OnTouch"
-        PreviewTouchMove="OnTouch"
-        PreviewTouchUp="OnTouch"
-        TouchDown="OnTouch"
-        TouchEnter="OnTouch"
-        TouchLeave="OnTouch"
-        TouchMove="OnTouch"
-        TouchUp="OnTouch">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="400" />
         </Grid.ColumnDefinitions>
-        <TextBlock
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Text="Listens to touch events here" />
+        <Button 
+            Background="LightGray"
+            IsManipulationEnabled="True"
+            ManipulationBoundaryFeedback="OnManipulation"
+            ManipulationCompleted="OnManipulation"
+            ManipulationDelta="OnManipulation"
+            ManipulationInertiaStarting="OnManipulation"
+            ManipulationStarted="OnManipulation"
+            ManipulationStarting="OnManipulation"
+            PreviewTouchDown="OnTouch"
+            PreviewTouchMove="OnTouch"
+            PreviewTouchUp="OnTouch"
+            TouchDown="OnTouch"
+            TouchEnter="OnTouch"
+            TouchLeave="OnTouch"
+            TouchMove="OnTouch"
+            TouchUp="OnTouch"
+            Click="OnTap">
+            Listens to touch events here
+        </Button>
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>

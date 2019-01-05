@@ -9,47 +9,54 @@
     /// </summary>
     public static class Touch
     {
+        static Touch()
+        {
+            if (!InitializeTouchInjection(256, TouchMode.TOUCH_FEEDBACK_DEFAULT))
+            {
+                throw new Win32Exception();
+            }
+        }
+
         public static void Tap(int x, int y)
         {
-            if (!InitializeTouchInjection(1, TouchMode.TOUCH_FEEDBACK_DEFAULT))
+            var contacts = new POINTER_TOUCH_INFO[1]
             {
-                throw new Win32Exception();
-            }
-
-            var contacts = new POINTER_TOUCH_INFO
-            {
-                pointerInfo =
+                new POINTER_TOUCH_INFO
                 {
-                    pointerType = POINTER_INPUT_TYPE.PT_TOUCH,
-                    pointerFlags = POINTER_FLAGS.POINTER_FLAG_DOWN | POINTER_FLAGS.POINTER_FLAG_INRANGE | POINTER_FLAGS.POINTER_FLAG_INCONTACT,
-                    ptPixelLocation = new POINT
+                    pointerInfo =
                     {
-                        x = x,
-                        y = y,
+                        pointerType = POINTER_INPUT_TYPE.PT_TOUCH,
+                        pointerFlags = POINTER_FLAGS.POINTER_FLAG_DOWN | POINTER_FLAGS.POINTER_FLAG_INRANGE | POINTER_FLAGS.POINTER_FLAG_INCONTACT,
+                        ptPixelLocation = new POINT
+                        {
+                            x = x,
+                            y = y,
+                        },
+                        pointerId = 1,
                     },
-                    pointerId = 1,
-                },
-                touchFlags = TOUCH_FLAGS.TOUCH_FLAGS_NONE,
-                touchMasks = TOUCH_MASK.TOUCH_MASK_CONTACTAREA | TOUCH_MASK.TOUCH_MASK_ORIENTATION | TOUCH_MASK.TOUCH_MASK_PRESSURE,
-                orientation = 90,
-                pressure = 32000,
-                rcContact = new Rect
-                {
-                    left = x - 2,
-                    right = x + 2,
-                    top = y - 2,
-                    bottom = y + 2
-                },
+                    touchFlags = TOUCH_FLAGS.TOUCH_FLAGS_NONE,
+                    touchMasks = TOUCH_MASK.TOUCH_MASK_CONTACTAREA | TOUCH_MASK.TOUCH_MASK_ORIENTATION |
+                                 TOUCH_MASK.TOUCH_MASK_PRESSURE,
+                    orientation = 90,
+                    pressure = 32000,
+                    rcContact = new Rect
+                    {
+                        left = x - 2,
+                        right = x + 2,
+                        top = y - 2,
+                        bottom = y + 2
+                    },
+                }
             };
 
-            if (!InjectTouchInput(1, ref contacts))
+            if (!InjectTouchInput(1, contacts))
             {
                 throw new Win32Exception();
             }
 
-            contacts.pressure = 0;
-            contacts.pointerInfo.pointerFlags = POINTER_FLAGS.POINTER_FLAG_UP;
-            if (!InjectTouchInput(1, ref contacts))
+            //contacts.pressure = 0;
+            contacts[0].pointerInfo.pointerFlags = POINTER_FLAGS.POINTER_FLAG_UP;
+            if (!InjectTouchInput(1, contacts))
             {
                 throw new Win32Exception();
             }
@@ -59,7 +66,7 @@
         static extern bool InitializeTouchInjection(uint maxCount, TouchMode dwMode);
 
         [DllImport("User32.dll")]
-        static extern bool InjectTouchInput(int count, ref POINTER_TOUCH_INFO contacts);
+        static extern bool InjectTouchInput(int count, [MarshalAs(UnmanagedType.LPArray), In] POINTER_TOUCH_INFO[] contacts);
 
         public enum TouchMode
         {
@@ -79,17 +86,20 @@
             TOUCH_FEEDBACK_NONE = 0x3,
         }
 
-        [StructLayout(LayoutKind.Explicit)]
         public struct Rect
         {
-            [FieldOffset(0)]
             public int left;
-            [FieldOffset(4)]
             public int top;
-            [FieldOffset(8)]
             public int right;
-            [FieldOffset(12)]
             public int bottom;
+
+            public static Rect Create(POINT p, int r) => new Rect
+            {
+                left = p.x - r,
+                right = p.x + r,
+                top = p.y - r,
+                bottom = p.y + r,
+            };
         }
 
         public enum TOUCH_FLAGS { TOUCH_FLAGS_NONE = 0x00000000/*Indicates that no flags are set.*/ }
