@@ -4,6 +4,9 @@
     using System.ComponentModel;
     using System.Runtime.InteropServices;
 
+    /// <summary>
+    /// https://social.technet.microsoft.com/wiki/contents/articles/6460.simulating-touch-input-in-windows-8-using-touch-injection-api.aspx?PageIndex=2
+    /// </summary>
     static class Touch2
     {
         static Touch2()

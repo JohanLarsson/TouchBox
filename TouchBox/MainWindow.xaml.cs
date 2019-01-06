@@ -42,8 +42,8 @@
             await Task.Delay(TimeSpan.FromMilliseconds(200));
             try
             {
-                Touch2.Down(100,120);
-                Touch2.Drag(110,130);
+                Touch2.Down(100,200);
+                Touch2.Drag(300,400);
                 Touch2.Up();
                 //Touch.Tap(100, 120);
             }
